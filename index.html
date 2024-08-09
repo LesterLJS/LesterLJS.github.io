@@ -234,7 +234,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2024-08-09 15:08:17 / 修改时间：16:58:03" itemprop="dateCreated datePublished" datetime="2024-08-09T15:08:17+08:00">2024-08-09</time>
+              <time title="创建时间：2024-08-09 15:08:17 / 修改时间：17:31:05" itemprop="dateCreated datePublished" datetime="2024-08-09T15:08:17+08:00">2024-08-09</time>
             </span>
 
           
@@ -251,9 +251,14 @@
           <hr>
 <h2 id="title-Kaggle’s-ML-Introduction"><a href="#title-Kaggle’s-ML-Introduction" class="headerlink" title="title: Kaggle’s ML Introduction"></a>title: Kaggle’s ML Introduction</h2><h2 id="导入一些库"><a href="#导入一些库" class="headerlink" title="导入一些库"></a>导入一些库</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="comment">#用于展示提取数据</span></span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeRegressor </span><br><span class="line"><span class="comment">#利用决策树回归模型训练数据，预测值（已知值）</span></span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="comment">#将训练数据分为train数据和验证数据，验证数据为从未出现过的训练数据</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="决策树模型"><a href="#决策树模型" class="headerlink" title="决策树模型"></a>决策树模型</h2><p><img src="/2024/08/09/post-name/image.png" alt="image"></p>
+<h2 id="决策树模型"><a href="#决策树模型" class="headerlink" title="决策树模型"></a>决策树模型</h2>
+
+
 <p>如图所示，随着从数据中提取的数据特征，数据筛选条件越多，情况越复杂<strong>（2^n^）</strong>，到最后就会情况太多，导致预测新数据时出现错误，以一些不相关的标准预测。</p>
-<h2 id="underfitting-and-overfitting-过拟合和欠拟合"><a href="#underfitting-and-overfitting-过拟合和欠拟合" class="headerlink" title="underfitting and overfitting(过拟合和欠拟合)"></a>underfitting and overfitting(过拟合和欠拟合)</h2><p><img src="/2024/08/09/post-name/.%5Cpost-name%5Cimage-1.png" alt="image"></p>
+<h2 id="underfitting-and-overfitting-过拟合和欠拟合"><a href="#underfitting-and-overfitting-过拟合和欠拟合" class="headerlink" title="underfitting and overfitting(过拟合和欠拟合)"></a>underfitting and overfitting(过拟合和欠拟合)</h2><img src="/2024/08/09/post-name/08/09/post-name/image-1.png" class title="image">
+
+
+
 <p>过拟合：当模型太复杂，相对于训练数据的参数过多时，就会发生这种情况。因此，虽然模型在训练数据上可能表现得很好，但在新的、未见过的数据上表现不佳，因为它实际上学会了适应训练集的特殊性而不是普遍趋势。</p>
 <p>欠拟合：模型复杂度不够，模型没有学习到重要的模式，它在训练数据上的表现就很差，同样也无法在新数据上表现好。</p>
 <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>在这两种情况下，模型都无法很好地推广，这是大多数预测模型的最终目标：不仅在它们被训练的数据上表现好，而且在新的、未见过的数据上也能表现好。一个拟合良好的模型达到了平衡，既捕捉了数据中的真实模式，也没有被噪声或随机性影响。</p>
@@ -328,7 +333,7 @@
       
           <h2 id="导入一些库"><a href="#导入一些库" class="headerlink" title="导入一些库"></a>导入一些库</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="comment">#用于展示提取数据</span></span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeRegressor </span><br><span class="line"><span class="comment">#利用决策树回归模型训练数据，预测值（已知值）</span></span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="comment">#将训练数据分为train数据和验证数据，验证数据为从未出现过的训练数据</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="决策树模型"><a href="#决策树模型" class="headerlink" title="决策树模型"></a>决策树模型</h2><p><img src="/2024/08/09/ML%20introducition/image.png"></p>
+<h2 id="决策树模型"><a href="#决策树模型" class="headerlink" title="决策树模型"></a>决策树模型</h2><p><img src="/image.png"></p>
 <p>如图所示，随着从数据中提取的数据特征，数据筛选条件越多，情况越复杂<strong>（2^n^）</strong>，到最后就会情况太多，导致预测新数据时出现错误，以一些不相关的标准预测。</p>
 <h2 id="underfitting-and-overfitting-过拟合和欠拟合"><a href="#underfitting-and-overfitting-过拟合和欠拟合" class="headerlink" title="underfitting and overfitting(过拟合和欠拟合)"></a>underfitting and overfitting(过拟合和欠拟合)</h2><p>过拟合：当模型太复杂，相对于训练数据的参数过多时，就会发生这种情况。因此，虽然模型在训练数据上可能表现得很好，但在新的、未见过的数据上表现不佳，因为它实际上学会了适应训练集的特殊性而不是普遍趋势。</p>
 <p>欠拟合：模型复杂度不够，模型没有学习到重要的模式，它在训练数据上的表现就很差，同样也无法在新数据上表现好。</p>
