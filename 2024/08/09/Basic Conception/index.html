@@ -20,23 +20,27 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Jason&#39;s Blog">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="Fine-tune Q&amp;A dataset  DatasetDict(&#123; train: Dataset(&#123;     features: [&#39;id&#39;, &#39;title&#39;, &#39;context&#39;, &#39;question&#39;, &#39;answers&#39;],     num_rows: 87599 &#125;)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Q&amp;A dataset Fine-tune">
+<meta property="og:url" content="http://example.com/2024/08/09/Basic%20Conception/index.html">
 <meta property="og:site_name" content="Jason&#39;s Blog">
+<meta property="og:description" content="Fine-tune Q&amp;A dataset  DatasetDict(&#123; train: Dataset(&#123;     features: [&#39;id&#39;, &#39;title&#39;, &#39;context&#39;, &#39;question&#39;, &#39;answers&#39;],     num_rows: 87599 &#125;)">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-09T06:47:19.551Z">
+<meta property="article:modified_time" content="2024-08-09T06:51:40.398Z">
 <meta property="article:author" content="Jason">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2024/08/09/Basic%20Conception/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
@@ -67,7 +71,7 @@
   padding: 0 10px 0 14px;
 }
 </style>
-  <title>Jason's Blog</title>
+  <title>Q&A dataset Fine-tune | Jason's Blog</title>
   
 
 
@@ -203,164 +207,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/08/09/post-name/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jason">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jason's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/08/09/post-name/" class="post-title-link" itemprop="url">post_name</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2024-08-09 15:08:17 / 修改时间：15:17:50" itemprop="dateCreated datePublished" datetime="2024-08-09T15:08:17+08:00">2024-08-09</time>
-            </span>
-
-          
-
-        </div>
-      </header>
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <hr>
-<h2 id="title-Kaggle’s-ML-Introduction"><a href="#title-Kaggle’s-ML-Introduction" class="headerlink" title="title: Kaggle’s ML Introduction"></a>title: Kaggle’s ML Introduction</h2><h2 id="导入一些库"><a href="#导入一些库" class="headerlink" title="导入一些库"></a>导入一些库</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="comment">#用于展示提取数据</span></span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeRegressor </span><br><span class="line"><span class="comment">#利用决策树回归模型训练数据，预测值（已知值）</span></span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="comment">#将训练数据分为train数据和验证数据，验证数据为从未出现过的训练数据</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="决策树模型"><a href="#决策树模型" class="headerlink" title="决策树模型"></a>决策树模型</h2><p><img src="/source/_posts/post-name/image.png"></p>
-<p>如图所示，随着从数据中提取的数据特征，数据筛选条件越多，情况越复杂<strong>（2^n^）</strong>，到最后就会情况太多，导致预测新数据时出现错误，以一些不相关的标准预测。</p>
-<h2 id="underfitting-and-overfitting-过拟合和欠拟合"><a href="#underfitting-and-overfitting-过拟合和欠拟合" class="headerlink" title="underfitting and overfitting(过拟合和欠拟合)"></a>underfitting and overfitting(过拟合和欠拟合)</h2><p><img src="/post-name/image-1.png" alt="image-1.png"></p>
-<p>过拟合：当模型太复杂，相对于训练数据的参数过多时，就会发生这种情况。因此，虽然模型在训练数据上可能表现得很好，但在新的、未见过的数据上表现不佳，因为它实际上学会了适应训练集的特殊性而不是普遍趋势。</p>
-<p>欠拟合：模型复杂度不够，模型没有学习到重要的模式，它在训练数据上的表现就很差，同样也无法在新数据上表现好。</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>在这两种情况下，模型都无法很好地推广，这是大多数预测模型的最终目标：不仅在它们被训练的数据上表现好，而且在新的、未见过的数据上也能表现好。一个拟合良好的模型达到了平衡，既捕捉了数据中的真实模式，也没有被噪声或随机性影响。</p>
-<h2 id="To-answer-the-question"><a href="#To-answer-the-question" class="headerlink" title="To answer the question"></a>To answer the question</h2><p><strong>max_leaf_nodes</strong> 这个函数帮助来判断模型在什么情况下取最优解。但是本质上的问题并没有得到解决。很难做出决定。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_absolute_error</span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeRegressor</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_mae</span>(<span class="params">max_leaf_nodes, train_X, val_X, train_y, val_y</span>):</span><br><span class="line">    model = DecisionTreeRegressor(max_leaf_nodes=max_leaf_nodes, random_state=<span class="number">0</span>)</span><br><span class="line">    model.fit(train_X, train_y)</span><br><span class="line">    preds_val = model.predict(val_X)</span><br><span class="line">    mae = mean_absolute_error(val_y, preds_val)</span><br><span class="line">    <span class="keyword">return</span>(mae)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># compare MAE with differing values of max_leaf_nodes</span></span><br><span class="line"><span class="keyword">for</span> max_leaf_nodes <span class="keyword">in</span> [<span class="number">5</span>, <span class="number">50</span>, <span class="number">500</span>, <span class="number">5000</span>]:</span><br><span class="line">    my_mae = get_mae(max_leaf_nodes, train_X, val_X, train_y, val_y)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Max leaf nodes: %d  \t\t Mean Absolute Error:  %d&quot;</span> %(max_leaf_nodes, my_mae))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Code you have previously used to load data</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_absolute_error</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeRegressor</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Path of the file to read</span></span><br><span class="line">iowa_file_path = <span class="string">&#x27;../input/home-data-for-ml-course/train.csv&#x27;</span></span><br><span class="line"></span><br><span class="line">home_data = pd.read_csv(iowa_file_path)</span><br><span class="line"><span class="comment"># Create target object and call it y</span></span><br><span class="line">y = home_data.SalePrice</span><br><span class="line"><span class="comment"># Create X</span></span><br><span class="line">features = [<span class="string">&#x27;LotArea&#x27;</span>, <span class="string">&#x27;YearBuilt&#x27;</span>, <span class="string">&#x27;1stFlrSF&#x27;</span>, <span class="string">&#x27;2ndFlrSF&#x27;</span>, <span class="string">&#x27;FullBath&#x27;</span>, <span class="string">&#x27;BedroomAbvGr&#x27;</span>, <span class="string">&#x27;TotRmsAbvGrd&#x27;</span>]</span><br><span class="line">X = home_data[features]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Split into validation and training data</span></span><br><span class="line">train_X, val_X, train_y, val_y = train_test_split(X, y, random_state=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Specify Model</span></span><br><span class="line">iowa_model = DecisionTreeRegressor(random_state=<span class="number">1</span>)</span><br><span class="line"><span class="comment"># Fit Model</span></span><br><span class="line">iowa_model.fit(train_X, train_y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Make validation predictions and calculate mean absolute error</span></span><br><span class="line">val_predictions = iowa_model.predict(val_X)</span><br><span class="line">val_mae = mean_absolute_error(val_predictions, val_y)</span><br><span class="line"><span class="comment"># 数字中加入千分位逗号，并去除小数部分</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Validation MAE: &#123;:,.0f&#125;&quot;</span>.<span class="built_in">format</span>(val_mae))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Random-Tree"><a href="#Random-Tree" class="headerlink" title="Random Tree"></a>Random Tree</h2><p>采用了新的模型</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestRegressor</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define the model. Set random_state to 1</span></span><br><span class="line">rf_model = RandomForestRegressor(random_state = <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># fit your model</span></span><br><span class="line">rf_model.fit(train_X, train_y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Calculate the mean absolute error of your Random Forest model on the validation data</span></span><br><span class="line">rf_val_predictions = rf_model.predict(val_X)</span><br><span class="line"></span><br><span class="line">rf_val_mae =  mean_absolute_error(rf_val_predictions, val_y)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Validation MAE for Random Forest Model: &#123;&#125;&quot;</span>.<span class="built_in">format</span>(rf_val_mae))</span><br></pre></td></tr></table></figure>
-
-<p>对比决策树，随机树有了进步，平均了每个组成树的预测来进行预测。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/08/09/ML%20introducition/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jason">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jason's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/08/09/ML%20introducition/" class="post-title-link" itemprop="url">Kaggle's ML Introduction</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2024-08-09 14:53:46 / 修改时间：15:14:35" itemprop="dateCreated datePublished" datetime="2024-08-09T14:53:46+08:00">2024-08-09</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="导入一些库"><a href="#导入一些库" class="headerlink" title="导入一些库"></a>导入一些库</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="comment">#用于展示提取数据</span></span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeRegressor </span><br><span class="line"><span class="comment">#利用决策树回归模型训练数据，预测值（已知值）</span></span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="comment">#将训练数据分为train数据和验证数据，验证数据为从未出现过的训练数据</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="决策树模型"><a href="#决策树模型" class="headerlink" title="决策树模型"></a>决策树模型</h2><p><img src="/post-name/image.png" alt="image.png"></p>
-<p>如图所示，随着从数据中提取的数据特征，数据筛选条件越多，情况越复杂<strong>（2^n^）</strong>，到最后就会情况太多，导致预测新数据时出现错误，以一些不相关的标准预测。</p>
-<h2 id="underfitting-and-overfitting-过拟合和欠拟合"><a href="#underfitting-and-overfitting-过拟合和欠拟合" class="headerlink" title="underfitting and overfitting(过拟合和欠拟合)"></a>underfitting and overfitting(过拟合和欠拟合)</h2><p><img src="/post-name/image-1.png" alt="image-1.png"></p>
-<p>过拟合：当模型太复杂，相对于训练数据的参数过多时，就会发生这种情况。因此，虽然模型在训练数据上可能表现得很好，但在新的、未见过的数据上表现不佳，因为它实际上学会了适应训练集的特殊性而不是普遍趋势。</p>
-<p>欠拟合：模型复杂度不够，模型没有学习到重要的模式，它在训练数据上的表现就很差，同样也无法在新数据上表现好。</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>在这两种情况下，模型都无法很好地推广，这是大多数预测模型的最终目标：不仅在它们被训练的数据上表现好，而且在新的、未见过的数据上也能表现好。一个拟合良好的模型达到了平衡，既捕捉了数据中的真实模式，也没有被噪声或随机性影响。</p>
-<h2 id="To-answer-the-question"><a href="#To-answer-the-question" class="headerlink" title="To answer the question"></a>To answer the question</h2><p><strong>max_leaf_nodes</strong> 这个函数帮助来判断模型在什么情况下取最优解。但是本质上的问题并没有得到解决。很难做出决定。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_absolute_error</span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeRegressor</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_mae</span>(<span class="params">max_leaf_nodes, train_X, val_X, train_y, val_y</span>):</span><br><span class="line">    model = DecisionTreeRegressor(max_leaf_nodes=max_leaf_nodes, random_state=<span class="number">0</span>)</span><br><span class="line">    model.fit(train_X, train_y)</span><br><span class="line">    preds_val = model.predict(val_X)</span><br><span class="line">    mae = mean_absolute_error(val_y, preds_val)</span><br><span class="line">    <span class="keyword">return</span>(mae)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># compare MAE with differing values of max_leaf_nodes</span></span><br><span class="line"><span class="keyword">for</span> max_leaf_nodes <span class="keyword">in</span> [<span class="number">5</span>, <span class="number">50</span>, <span class="number">500</span>, <span class="number">5000</span>]:</span><br><span class="line">    my_mae = get_mae(max_leaf_nodes, train_X, val_X, train_y, val_y)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Max leaf nodes: %d  \t\t Mean Absolute Error:  %d&quot;</span> %(max_leaf_nodes, my_mae))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Code you have previously used to load data</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_absolute_error</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeRegressor</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Path of the file to read</span></span><br><span class="line">iowa_file_path = <span class="string">&#x27;../input/home-data-for-ml-course/train.csv&#x27;</span></span><br><span class="line"></span><br><span class="line">home_data = pd.read_csv(iowa_file_path)</span><br><span class="line"><span class="comment"># Create target object and call it y</span></span><br><span class="line">y = home_data.SalePrice</span><br><span class="line"><span class="comment"># Create X</span></span><br><span class="line">features = [<span class="string">&#x27;LotArea&#x27;</span>, <span class="string">&#x27;YearBuilt&#x27;</span>, <span class="string">&#x27;1stFlrSF&#x27;</span>, <span class="string">&#x27;2ndFlrSF&#x27;</span>, <span class="string">&#x27;FullBath&#x27;</span>, <span class="string">&#x27;BedroomAbvGr&#x27;</span>, <span class="string">&#x27;TotRmsAbvGrd&#x27;</span>]</span><br><span class="line">X = home_data[features]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Split into validation and training data</span></span><br><span class="line">train_X, val_X, train_y, val_y = train_test_split(X, y, random_state=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Specify Model</span></span><br><span class="line">iowa_model = DecisionTreeRegressor(random_state=<span class="number">1</span>)</span><br><span class="line"><span class="comment"># Fit Model</span></span><br><span class="line">iowa_model.fit(train_X, train_y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Make validation predictions and calculate mean absolute error</span></span><br><span class="line">val_predictions = iowa_model.predict(val_X)</span><br><span class="line">val_mae = mean_absolute_error(val_predictions, val_y)</span><br><span class="line"><span class="comment"># 数字中加入千分位逗号，并去除小数部分</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Validation MAE: &#123;:,.0f&#125;&quot;</span>.<span class="built_in">format</span>(val_mae))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Random-Tree"><a href="#Random-Tree" class="headerlink" title="Random Tree"></a>Random Tree</h2><p>采用了新的模型</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestRegressor</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define the model. Set random_state to 1</span></span><br><span class="line">rf_model = RandomForestRegressor(random_state = <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># fit your model</span></span><br><span class="line">rf_model.fit(train_X, train_y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Calculate the mean absolute error of your Random Forest model on the validation data</span></span><br><span class="line">rf_val_predictions = rf_model.predict(val_X)</span><br><span class="line"></span><br><span class="line">rf_val_mae =  mean_absolute_error(rf_val_predictions, val_y)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Validation MAE for Random Forest Model: &#123;&#125;&quot;</span>.<span class="built_in">format</span>(rf_val_mae))</span><br></pre></td></tr></table></figure>
-
-<p>对比决策树，随机树有了进步，平均了每个组成树的预测来进行预测。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -376,10 +226,9 @@
       <meta itemprop="name" content="Jason's Blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/08/09/Basic%20Conception/" class="post-title-link" itemprop="url">Q&A dataset Fine-tune</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          Q&A dataset Fine-tune
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -403,7 +252,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Fine-tune-Q-A"><a href="#Fine-tune-Q-A" class="headerlink" title="Fine-tune Q&amp;A"></a>Fine-tune Q&amp;A</h1><blockquote>
+        <h1 id="Fine-tune-Q-A"><a href="#Fine-tune-Q-A" class="headerlink" title="Fine-tune Q&amp;A"></a>Fine-tune Q&amp;A</h1><blockquote>
 <p>dataset</p>
 </blockquote>
 <pre><code>DatasetDict(&#123;
@@ -601,96 +450,52 @@ from IPython.display import display, HTML
 
 
 
-      
     </div>
 
     
     
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/08/01/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jason">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jason's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/08/01/hello-world/" class="post-title-link" itemprop="url">2</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-08-01 00:16:59" itemprop="dateCreated datePublished" datetime="2024-08-01T00:16:59+08:00">2024-08-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-08-09 14:56:40" itemprop="dateModified" datetime="2024-08-09T14:56:40+08:00">2024-08-09</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My Ne P&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
+    <div class="post-widgets">
+    <div class="likely">
+        <div class="twitter">Tweet</div>
+        <div class="facebook">Share</div>
+        <div class="linkedin">Link</div>
+        <div class="gplus">Plus</div>
+        <div class="vkontakte">Share</div>
+        <div class="odnoklassniki">Class</div>
+        <div class="telegram">Send</div>
+        <div class="whatsapp">Send</div>
+        <div class="pinterest">Pin</div>
+    </div>
+  </div>
+  <script src="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.min.js"></script><div class="post-widgets">
+      <div id="needsharebutton-postbottom">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
     </div>
 
-    
-    
-    
       <footer class="post-footer">
-        <div class="post-eof"></div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/08/01/hello-world/" rel="prev" title="2">
+      <i class="fa fa-chevron-left"></i> 2
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/08/09/ML%20introducition/" rel="next" title="Kaggle's ML Introduction">
+      Kaggle's ML Introduction <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
+    
   </article>
   
   
-  
-
-
   
 
 
@@ -743,6 +548,7 @@ from IPython.display import display, HTML
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Fine-tune-Q-A"><span class="nav-number">1.</span> <span class="nav-text">Fine-tune Q&amp;A</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%95%B0%E6%8D%AE%E9%9B%86%E5%85%83%E7%B4%A0%E8%A7%A3%E9%87%8A"><span class="nav-number">1.1.</span> <span class="nav-text">1. 数据集元素解释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%8C%91%E9%80%89%E5%8D%81%E4%B8%AA%E6%A0%B7%E6%9C%AC"><span class="nav-number">1.2.</span> <span class="nav-text">2. 挑选十个样本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%A4%84%E7%90%86%E9%95%BF%E6%96%87%E6%9C%AC"><span class="nav-number">1.3.</span> <span class="nav-text">2. 处理长文本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E5%AF%BB%E6%89%BE%E7%AD%94%E6%A1%88%E4%BD%8D%E7%BD%AE"><span class="nav-number">1.3.1.</span> <span class="nav-text">2.1 寻找答案位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%BE%E5%88%B0%E7%AD%94%E6%A1%88%E5%9C%A8%E6%96%87%E4%B8%AD%E7%9A%84index%E5%80%BC"><span class="nav-number">1.3.2.</span> <span class="nav-text">找到答案在文中的index值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E7%A1%AE%E8%AE%A4%E5%A4%9A%E4%B8%AA%E7%89%B9%E5%BE%81%E4%B8%AD%E6%98%AF%E5%90%A6%E5%8C%85%E5%90%AB%E7%AD%94%E6%A1%88%EF%BC%8C%E6%9C%80%E5%90%8E%E7%94%A80"><span class="nav-number">1.3.3.</span> <span class="nav-text">2.3 确认多个特征中是否包含答案，最后用0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E5%8F%96%E5%B0%8F%E5%9E%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">1.3.4.</span> <span class="nav-text">2.4 取小型数据集的方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0"><span class="nav-number">1.4.</span> <span class="nav-text">3 模型评估</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

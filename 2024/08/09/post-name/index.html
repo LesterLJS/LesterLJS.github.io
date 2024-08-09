@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-32x32.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/images/manifest.json">
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="title: Kaggle’s ML Introduction导入一些库123456import pandas as pd#用于展示提取数据from sklearn.tree import DecisionTreeRegressor #利用决策树回归模型训练数据，预测值（已知值）from sklearn.model_selection import train_test_split#将训练数据分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="post_name">
+<meta property="og:url" content="http://example.com/2024/08/09/post-name/index.html">
+<meta property="og:site_name" content="Jason&#39;s Blog">
+<meta property="og:description" content="title: Kaggle’s ML Introduction导入一些库123456import pandas as pd#用于展示提取数据from sklearn.tree import DecisionTreeRegressor #利用决策树回归模型训练数据，预测值（已知值）from sklearn.model_selection import train_test_split#将训练数据分">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/source/_posts/post-name/image.png">
+<meta property="og:image" content="http://example.com/post-name/image-1.png">
+<meta property="article:published_time" content="2024-08-09T07:08:17.000Z">
+<meta property="article:modified_time" content="2024-08-09T07:17:50.617Z">
+<meta property="article:author" content="Jason">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/source/_posts/post-name/image.png">
+
+<link rel="canonical" href="http://example.com/2024/08/09/post-name/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.css"><style>
+#needsharebutton-postbottom {
+  cursor: pointer;
+  height: 26px;
+  margin-top: 10px;
+  position: relative;
+}
+#needsharebutton-postbottom .btn {
+  border: 1px solid $btn-default-border-color;
+  border-radius: 3px;
+  display: initial;
+  padding: 1px 4px;
+}
+</style><style>
+#needsharebutton-float {
+  bottom: 88px;
+  cursor: pointer;
+  left: -8px;
+  position: fixed;
+  z-index: 9999;
+}
+#needsharebutton-float .btn {
+  border: 1px solid $btn-default-border-color;
+  border-radius: 4px;
+  padding: 0 10px 0 14px;
+}
+</style>
+  <title>post_name | Jason's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Jason's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/08/09/post-name/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jason">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jason's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          post_name
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-08-09 15:08:17 / 修改时间：15:17:50" itemprop="dateCreated datePublished" datetime="2024-08-09T15:08:17+08:00">2024-08-09</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <hr>
+<h2 id="title-Kaggle’s-ML-Introduction"><a href="#title-Kaggle’s-ML-Introduction" class="headerlink" title="title: Kaggle’s ML Introduction"></a>title: Kaggle’s ML Introduction</h2><h2 id="导入一些库"><a href="#导入一些库" class="headerlink" title="导入一些库"></a>导入一些库</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="comment">#用于展示提取数据</span></span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeRegressor </span><br><span class="line"><span class="comment">#利用决策树回归模型训练数据，预测值（已知值）</span></span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="comment">#将训练数据分为train数据和验证数据，验证数据为从未出现过的训练数据</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="决策树模型"><a href="#决策树模型" class="headerlink" title="决策树模型"></a>决策树模型</h2><p><img src="/source/_posts/post-name/image.png"></p>
+<p>如图所示，随着从数据中提取的数据特征，数据筛选条件越多，情况越复杂<strong>（2^n^）</strong>，到最后就会情况太多，导致预测新数据时出现错误，以一些不相关的标准预测。</p>
+<h2 id="underfitting-and-overfitting-过拟合和欠拟合"><a href="#underfitting-and-overfitting-过拟合和欠拟合" class="headerlink" title="underfitting and overfitting(过拟合和欠拟合)"></a>underfitting and overfitting(过拟合和欠拟合)</h2><p><img src="/post-name/image-1.png" alt="image-1.png"></p>
+<p>过拟合：当模型太复杂，相对于训练数据的参数过多时，就会发生这种情况。因此，虽然模型在训练数据上可能表现得很好，但在新的、未见过的数据上表现不佳，因为它实际上学会了适应训练集的特殊性而不是普遍趋势。</p>
+<p>欠拟合：模型复杂度不够，模型没有学习到重要的模式，它在训练数据上的表现就很差，同样也无法在新数据上表现好。</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>在这两种情况下，模型都无法很好地推广，这是大多数预测模型的最终目标：不仅在它们被训练的数据上表现好，而且在新的、未见过的数据上也能表现好。一个拟合良好的模型达到了平衡，既捕捉了数据中的真实模式，也没有被噪声或随机性影响。</p>
+<h2 id="To-answer-the-question"><a href="#To-answer-the-question" class="headerlink" title="To answer the question"></a>To answer the question</h2><p><strong>max_leaf_nodes</strong> 这个函数帮助来判断模型在什么情况下取最优解。但是本质上的问题并没有得到解决。很难做出决定。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_absolute_error</span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeRegressor</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_mae</span>(<span class="params">max_leaf_nodes, train_X, val_X, train_y, val_y</span>):</span><br><span class="line">    model = DecisionTreeRegressor(max_leaf_nodes=max_leaf_nodes, random_state=<span class="number">0</span>)</span><br><span class="line">    model.fit(train_X, train_y)</span><br><span class="line">    preds_val = model.predict(val_X)</span><br><span class="line">    mae = mean_absolute_error(val_y, preds_val)</span><br><span class="line">    <span class="keyword">return</span>(mae)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># compare MAE with differing values of max_leaf_nodes</span></span><br><span class="line"><span class="keyword">for</span> max_leaf_nodes <span class="keyword">in</span> [<span class="number">5</span>, <span class="number">50</span>, <span class="number">500</span>, <span class="number">5000</span>]:</span><br><span class="line">    my_mae = get_mae(max_leaf_nodes, train_X, val_X, train_y, val_y)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Max leaf nodes: %d  \t\t Mean Absolute Error:  %d&quot;</span> %(max_leaf_nodes, my_mae))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Code you have previously used to load data</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_absolute_error</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeRegressor</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Path of the file to read</span></span><br><span class="line">iowa_file_path = <span class="string">&#x27;../input/home-data-for-ml-course/train.csv&#x27;</span></span><br><span class="line"></span><br><span class="line">home_data = pd.read_csv(iowa_file_path)</span><br><span class="line"><span class="comment"># Create target object and call it y</span></span><br><span class="line">y = home_data.SalePrice</span><br><span class="line"><span class="comment"># Create X</span></span><br><span class="line">features = [<span class="string">&#x27;LotArea&#x27;</span>, <span class="string">&#x27;YearBuilt&#x27;</span>, <span class="string">&#x27;1stFlrSF&#x27;</span>, <span class="string">&#x27;2ndFlrSF&#x27;</span>, <span class="string">&#x27;FullBath&#x27;</span>, <span class="string">&#x27;BedroomAbvGr&#x27;</span>, <span class="string">&#x27;TotRmsAbvGrd&#x27;</span>]</span><br><span class="line">X = home_data[features]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Split into validation and training data</span></span><br><span class="line">train_X, val_X, train_y, val_y = train_test_split(X, y, random_state=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Specify Model</span></span><br><span class="line">iowa_model = DecisionTreeRegressor(random_state=<span class="number">1</span>)</span><br><span class="line"><span class="comment"># Fit Model</span></span><br><span class="line">iowa_model.fit(train_X, train_y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Make validation predictions and calculate mean absolute error</span></span><br><span class="line">val_predictions = iowa_model.predict(val_X)</span><br><span class="line">val_mae = mean_absolute_error(val_predictions, val_y)</span><br><span class="line"><span class="comment"># 数字中加入千分位逗号，并去除小数部分</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Validation MAE: &#123;:,.0f&#125;&quot;</span>.<span class="built_in">format</span>(val_mae))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Random-Tree"><a href="#Random-Tree" class="headerlink" title="Random Tree"></a>Random Tree</h2><p>采用了新的模型</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestRegressor</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define the model. Set random_state to 1</span></span><br><span class="line">rf_model = RandomForestRegressor(random_state = <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># fit your model</span></span><br><span class="line">rf_model.fit(train_X, train_y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Calculate the mean absolute error of your Random Forest model on the validation data</span></span><br><span class="line">rf_val_predictions = rf_model.predict(val_X)</span><br><span class="line"></span><br><span class="line">rf_val_mae =  mean_absolute_error(rf_val_predictions, val_y)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Validation MAE for Random Forest Model: &#123;&#125;&quot;</span>.<span class="built_in">format</span>(rf_val_mae))</span><br></pre></td></tr></table></figure>
+
+<p>对比决策树，随机树有了进步，平均了每个组成树的预测来进行预测。</p>
+
+    </div>
+
+    
+    
+    <div class="post-widgets">
+    <div class="likely">
+        <div class="twitter">Tweet</div>
+        <div class="facebook">Share</div>
+        <div class="linkedin">Link</div>
+        <div class="gplus">Plus</div>
+        <div class="vkontakte">Share</div>
+        <div class="odnoklassniki">Class</div>
+        <div class="telegram">Send</div>
+        <div class="whatsapp">Send</div>
+        <div class="pinterest">Pin</div>
+    </div>
+  </div>
+  <script src="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.min.js"></script><div class="post-widgets">
+      <div id="needsharebutton-postbottom">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    </div>
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/08/09/ML%20introducition/" rel="prev" title="Kaggle's ML Introduction">
+      <i class="fa fa-chevron-left"></i> Kaggle's ML Introduction
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#title-Kaggle%E2%80%99s-ML-Introduction"><span class="nav-number">1.</span> <span class="nav-text">title: Kaggle’s ML Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E4%B8%80%E4%BA%9B%E5%BA%93"><span class="nav-number">2.</span> <span class="nav-text">导入一些库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">决策树模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#underfitting-and-overfitting-%E8%BF%87%E6%8B%9F%E5%90%88%E5%92%8C%E6%AC%A0%E6%8B%9F%E5%90%88"><span class="nav-number">4.</span> <span class="nav-text">underfitting and overfitting(过拟合和欠拟合)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">5.</span> <span class="nav-text">Conclusion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#To-answer-the-question"><span class="nav-number">6.</span> <span class="nav-text">To answer the question</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Random-Tree"><span class="nav-number">7.</span> <span class="nav-text">Random Tree</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jason</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        <!--
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div> -->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+<div id="needsharebutton-float">
+      <span class="btn">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </span>
+    </div>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.js"></script>
+  <script>
+      pbOptions = {};
+        pbOptions.iconStyle = "box";
+        pbOptions.boxForm = "horizontal";
+        pbOptions.position = "bottomCenter";
+        pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+      flOptions = {};
+        flOptions.iconStyle = "box";
+        flOptions.boxForm = "horizontal";
+        flOptions.position = "middleRight";
+        flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      new needShareButton('#needsharebutton-float', flOptions);
+  </script>
+</body>
+</html>
