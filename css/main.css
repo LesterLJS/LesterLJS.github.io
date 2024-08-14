@@ -1458,7 +1458,7 @@ pre code {
     transition: all 0.2s ease-in-out;
   }
   .links-of-author a::before {
-    background: #226601;
+    background: #2ec1ff;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -3078,7 +3078,7 @@ header.header {
   }
 }
 body {
-  background: url("/images/F.jpg") no-repeat center center fixed;
+  background: url("/images/G.jpg") no-repeat center center fixed;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
