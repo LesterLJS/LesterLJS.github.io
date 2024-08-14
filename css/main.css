@@ -1458,7 +1458,7 @@ pre code {
     transition: all 0.2s ease-in-out;
   }
   .links-of-author a::before {
-    background: #091db9;
+    background: #dea67c;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -3078,7 +3078,7 @@ header.header {
   }
 }
 body {
-  background: url("/images/G.png") no-repeat center center fixed;
+  background: url("/images/A.png") no-repeat center center fixed;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -3093,7 +3093,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url("/images/G.png") no-repeat center center;
+    background: url("/images/A.png") no-repeat center center;
     background-size: cover;
     z-index: -1; /* 确保背景图在最底层 */
   }
