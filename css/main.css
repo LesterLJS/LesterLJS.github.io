@@ -1458,7 +1458,7 @@ pre code {
     transition: all 0.2s ease-in-out;
   }
   .links-of-author a::before {
-    background: #abff74;
+    background: #c3ff1c;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -3164,9 +3164,4 @@ blockquote {
   color: #cf0; /* 将文本颜色改为荧光黄 */
   border-left: 5px solid #cf0; /* 可选：将引用的左侧边框颜色也改为荧光黄 */
   padding-left: 10px; /* 可选：为引用文本增加内边距 */
-}
-img {
-  max-width: 50px; /* 自动根据容器调整图片大小 */
-  height: auto; /* 保持图片宽高比 */
-  width: 50px; /* 或百分比，根据需求调整 */
 }
